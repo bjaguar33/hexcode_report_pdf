@@ -1,0 +1,79 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="hexcode_claim_inherit">
+            <field name="name">crm.claim.form.inherit</field>
+            <field name="model">crm.claim</field>
+            <field name="inherit_id" ref="crm_claim.crm_case_claims_form_view"/>
+            <field name="arch" type="xml">
+                <field name="description" position="after">
+                    <label for="hexcode_report_pdf" string="Hexcode Style Report"/>
+                    <field name="hexcode_report_pdf" string="Style Report"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hexcode_quote_inherit">
+            <field name="name">crm.quote.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="order_line" position="after">
+                    <label for="hexcode_report_pdf" string="Hexcode Style Report"/>
+                    <field name="hexcode_report_pdf"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="hexcode_invoice_inherit">
+            <field name="name">crm.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="invoice_line_ids" position="after">
+                    <label for="hexcode_report_pdf" string="Hexcode Style Report"/>
+                    <field name="hexcode_report_pdf"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hexcode_picking_inherit">
+            <field name="name">crm.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="move_lines" position="after">
+                    <label for="hexcode_report_pdf" string="Hexcode Style Report"/>
+                    <field name="hexcode_report_pdf"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hexcode_purchase_inherit">
+            <field name="name">crm.purchase.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="order_line" position="after">
+                    <label for="hexcode_report_pdf" string="Hexcode Style Report"/>
+                    <field name="hexcode_report_pdf"/>
+                </field>
+            </field>
+        </record>
+
+
+        <!-- Action to open To-do Task list -->
+        <act_window id="evento_menu"
+                    name="To-do Task"
+                    res_model="hexcode_report_pdf"
+                    view_mode="tree,form" />
+        <!-- Menu item to open To-do Task list -->
+        <menuitem id="btn_hexcode_report_pdf"
+                  name="Hexcode Report PDF"
+                  parent="base.menu_config"
+                  sequence="20"
+                  action="evento_menu" />
+
+    </data>
+</openerp>

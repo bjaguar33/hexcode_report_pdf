@@ -1,0 +1,71 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Report PDF For Odoo V.9</h2>
+            <h3 class="oe_slogan">A professional module which adds many features in your report</h3>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_demo oe_picture oe_screenshot">
+                    <img src="main_screenshot.png">
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                Ability to download the report in PDF format: Claims, Sales Orders, Purchase Orders, Invoices, Picking, Quotes, Quotations Request.<br/>
+                6 Fantastic themes for your report: Orange, Yellow, Green, Blue, Red and Blue. Many other issues will soon be added to this module for free.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Guide to the pdf report</h2>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                Once the module is installed, in the "Settings" will add an item to the menu with the name "Hexcode pdf report". This section allows you to create endless "name record" associated with each of them to one of six themes. This allows to be able to have so many combinations of themes.
+            </p>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture oe_screenshot" src="screen_one.png">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Print your first Report</h2>
+            <h3 class="oe_slogan">download a report in pdf has never been easier!</h3>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_demo oe_picture oe_screenshot">
+                    <img src="screen_two.png.png">
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                Go to one of the sections listed in the first paragraph, Example "Invoice", open an invoice in the form at the top you will find a menu "Print." If you click on it you will find the voice "HEXCode invoice pdf". Just click this to download your invoice !. The same procedure must be performed to download claims, estimates etc.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Change theme for each Form</h2>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+            thanks to the form "HEXCode pdf report" in the "settings" section, you can create a number of records associated with one of the six themes. These records must be associated in the view form of a complaint or an invoice etc .. to give the desired theme. E 'enough to go into the "Style PDF report" and select the name record.            </p>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture oe_screenshot" src="screen_three.png">
+            </div>
+        </div>
+    </div>
+</section>
+
+
