@@ -63,9 +63,43 @@
         </record>
 
 
+        <record model="ir.ui.view" id="hexcode_form_settings_report_pdf">
+            <field name="name">hexcode.form.settings.report.pdf</field>
+            <field name="model">hexcode_report_pdf</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group string="General Settings">
+                            <field name="description" string="Hexcode Report Settings"/>
+                            <field name="name" string="Name Theme"/>
+                            <field name="stile" string="Report Template"/>
+                        </group>
+                        <group string="Custom Report Theme">
+                            <group>
+                                <field name="is_custom_report" string="Custom Report"/>
+                                <field name="main_color" string="Main Color"/>
+                                <field name="secondary_color" string="Secondary Color"/>
+                                <field name="text_color_primary" string="Main Text Color"/>
+                                <field name="text_color_secondary" string="Sec. Text Color"/>
+                            </group>
+                            <group>
+                                <field name="text_size" string="Text Size (px)"/>
+                                <field name="footer_color" string="Footer Color"/>
+                                <field name="footer_color_text" string="Footer Text Color"/>
+                                <field name="header_color" string="Header Color"/>
+                                <field name="header_color_text" string="Header Text Color"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
         <!-- Action to open To-do Task list -->
         <act_window id="evento_menu"
-                    name="To-do Task"
+                    name="Hexcode Report Settings"
                     res_model="hexcode_report_pdf"
                     view_mode="tree,form" />
         <!-- Menu item to open To-do Task list -->

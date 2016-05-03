@@ -3,9 +3,8 @@ from openerp import fields,models
 class hexcode_report_pdf(models.Model):
     _name = "hexcode_report_pdf"
 
-    description = fields.Char(string="Descrizione", default="Plugin Hexcode Report PDF V.1.0, Clicca su Crea per aggiungere una nuova regola di stile. All'interno"
-                                                            "dei form dei: preventivi, claim etc.. troverai un campo dove potrai selezionare una regola di stile creata.")
-    name = fields.Char(string="Nome Regola")
+    description = fields.Char(readonly=True, default="Plugin HEXCode PDF Report V.1.0, Click Create to add a new style rule. Within the form of: preventive, claim etc .. will be a box where you can select a style rule created.")
+    name = fields.Char()
 
     stile = fields.Selection([('theme_one', 'Green Theme'),
                               ('theme_two', 'Blue Theme'),
@@ -13,6 +12,19 @@ class hexcode_report_pdf(models.Model):
                               ('theme_four', 'Red Theme'),
                               ('theme_five', 'Azure Theme'),
                               ('theme_six', 'Yellow Theme')])
+
+    is_custom_report = fields.Boolean(default=False)
+    main_color = fields.Char(default="#16a085")
+    secondary_color = fields.Char(default="#16a085")
+    text_color_primary = fields.Char(default="#16a085")
+    text_color_secondary = fields.Char(default="#16a085")
+
+    text_size = fields.Integer(default=14)
+
+    footer_color = fields.Char(default="#16a085")
+    footer_color_text = fields.Char(default="#16a085")
+    header_color = fields.Char(default="#16a085")
+    header_color_text = fields.Char(default="#16a085")
 
 
 class hexcode_report_pdf_claim(models.Model):

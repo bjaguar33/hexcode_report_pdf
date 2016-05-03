@@ -389,3 +389,12 @@ span{
     padding: 10px;
 }
 
+
+.page table {
+    page-break-inside:auto;
+}
+.page table tr, .totale{
+    page-break-inside:avoid;
+    page-break-after:auto
+}
+

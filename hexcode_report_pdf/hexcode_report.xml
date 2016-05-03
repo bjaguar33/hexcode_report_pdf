@@ -103,8 +103,56 @@
         <template id="report_claim_document">
             <!-- Re-browse of the record with the partner lang -->
             <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
+            <!--TEMA CUSTOM-->
+            <t t-if="doc.hexcode_report_pdf.is_custom_report == True">
+                <t t-call="hexcode_report_pdf.hexcode_external_layout_custom">
+                    <div class="page">
+                        <t t-set="colore_primario" t-value="doc.hexcode_report_pdf.main_color"/>
+                        <t t-set="colore_secondario" t-value="doc.hexcode_report_pdf.secondary_color"/>
+                        <t t-set="colore_secondario_testo" t-value="doc.hexcode_report_pdf.text_color_secondary"/>
+                        <t t-set="colore_primario_testo" t-value="doc.hexcode_report_pdf.text_color_primary"/>
+                        <br/><br/>
+                        <h3 class="hexcode-title" t-attf-style="color:{{colore_primario_testo}};">Claim: <h3 t-attf-style="color:{{colore_primario_testo}};" class="hexcode-title" t-field="doc.name"/></h3><br/><br/>
+                        <span class="hexcode-bold">Date: </span><span t-field="doc.date"/><br/>
+                        <span class="hexcode-bold">Responsible: </span><span t-field="doc.user_id"/><br/>
+                        <span class="hexcode-bold">Sales Team: </span><span t-field="doc.team_id"/><br/><br/><br/>
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <h3 class="hexcode-title-2" t-attf-style="color:{{colore_primario_testo}};">Claim Reporter</h3><br/><br/>
+                                <span class="hexcode-bold">Partner: </span><span t-field="doc.partner_id"/><br/>
+                                <span class="hexcode-bold">Phone: </span><span t-field="doc.partner_phone"/><br/>
+                                <span class="hexcode-bold">Email: </span><span t-field="doc.email_from"/>
+                            </div>
+                            <div class="col-xs-5">
+                                <h3 class="hexcode-title-2" t-attf-style="color:{{colore_primario_testo}};">Responsibilities</h3><br/><br/>
+                                <span class="hexcode-bold">Trouble Responsible: </span><span t-field="doc.user_fault"/><br/>
+                                <span class="hexcode-bold">Category: </span><span t-field="doc.categ_id"/><br/>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="hexcode-title-2" t-attf-style="color:{{colore_primario_testo}};">Claim Description</h3><br/><br/>
+                                <span class="hexcode-bold">Description: </span><span t-field="doc.description"/>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h3 class="hexcode-title-2" t-attf-style="color:{{colore_primario_testo}};">Root Causes</h3><br/><br/>
+                                <span class="hexcode-bold">Cause: </span><span t-field="doc.cause"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <h3 class="hexcode-title-2" t-attf-style="color:{{colore_primario_testo}};">Resolution Actions</h3><br/><br/>
+                                <span class="hexcode-bold">Action Type: </span><span t-field="doc.type_action"/><br/>
+                                <span class="hexcode-bold">Resolution: </span><span t-field="doc.resolution"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
             <!--TEMA UNO-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_one'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_one' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout">
                     <div class="page">
                         <br/><br/>
@@ -148,7 +196,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_two'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_two' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout2">
                     <div class="page">
                         <br/><br/>
@@ -192,7 +240,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_three'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_three' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout3">
                     <div class="page">
                         <br/><br/>
@@ -236,7 +284,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_four'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_four' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout4">
                     <div class="page">
                         <br/><br/>
@@ -280,7 +328,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_five'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_five' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout5">
                     <div class="page">
                         <br/><br/>
@@ -324,7 +372,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_six'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_six' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout6">
                     <div class="page">
                         <br/><br/>
@@ -375,8 +423,133 @@
         <template id="report_quote_document">
             <!-- Re-browse of the record with the partner lang -->
             <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
+            <!--TEMA CUSTOM-->
+            <t t-if="doc.hexcode_report_pdf.is_custom_report == True">
+                <t t-call="hexcode_report_pdf.hexcode_external_layout_custom">
+                    <div class="page">
+                        <t t-set="colore_primario" t-value="doc.hexcode_report_pdf.main_color"/>
+                        <t t-set="colore_secondario" t-value="doc.hexcode_report_pdf.secondary_color"/>
+                        <t t-set="colore_secondario_testo" t-value="doc.hexcode_report_pdf.text_color_secondary"/>
+                        <t t-set="colore_primario_testo" t-value="doc.hexcode_report_pdf.text_color_primary"/>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-xs-6 quote-header" t-attf-style="background-color:{{colore_primario}};">
+                                <t t-if="doc.state == 'draft'">
+                                    <h2 class="hexcode-title" t-attf-style="color:{{ colore_secondario_testo }}; display:inline;">Quotation N°<h2 t-attf-style="color:{{ colore_secondario_testo }}; display:inline;" t-field="doc.name"/></h2><br/>
+
+                                </t>
+                                <t t-if="doc.state == 'sale'">
+                                    <h2 class="hexcode-title " t-attf-style="color:{{ colore_secondario_testo }}; display:inline;">Order N°<h2 t-attf-style="color:{{ colore_secondario_testo }}; display:inline;" t-field="doc.name"/></h2><br/>
+                                </t>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <span class="hexcode-bold ">Salesperson: </span><span t-field="doc.user_id"/><br/>
+                                <span class="hexcode-bold ">Expiration Date: </span><span  t-field="doc.validity_date"/><br/>
+                                <span class="hexcode-bold ">Payment Term: </span><span t-field="doc.payment_term_id"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <h3 class="hexcode-title-2" t-attf-style="color:{{ colore_primario_testo }}; ">Customer</h3><br/><br/>
+                                <span class="hexcode-bold">Name: </span><span t-field="doc.partner_id.name"/><br/>
+                                <span class="hexcode-bold">Address: </span><span t-field="doc.partner_id.street"/><span t-field="doc.partner_id.city"/>
+                                <span t-field="doc.partner_id.zip"/><span t-field="doc.partner_id.state_id"/><br/>
+                                <span class="hexcode-bold">Phone: </span><span t-field="doc.partner_id.phone"/><br/>
+                                <span class="hexcode-bold">Email: </span><span t-field="doc.partner_id.email"/><br/>
+                            </div>
+                            <div class="col-xs-4">
+                                <h3 class="hexcode-title-2 " t-attf-style="color:{{ colore_primario_testo }}; ">Shipping Address</h3><br/><br/>
+                                <span class="hexcode-bold">Name: </span><span t-field="doc.partner_shipping_id.name"/><br/>
+                                <span class="hexcode-bold">Address: </span><span t-field="doc.partner_shipping_id.street"/><span t-field="doc.partner_id.city"/>
+                                <span t-field="doc.partner_id.zip"/><span t-field="doc.partner_shipping_id.state_id"/><br/>
+                                <span class="hexcode-bold">Phone: </span><span t-field="doc.partner_shipping_id.phone"/><br/>
+                                <span class="hexcode-bold">Email: </span><span t-field="doc.partner_shipping_id.email"/><br/>
+                            </div>
+                            <div class="col-xs-4">
+                                <h3 class="hexcode-title-2 " t-attf-style="color:{{ colore_primario_testo }}; ">Invoice Address</h3><br/><br/>
+                                <span class="hexcode-bold">Name: </span><span t-field="doc.partner_invoice_id.name"/><br/>
+                                <span class="hexcode-bold">Address: </span><span t-field="doc.partner_invoice_id.street"/><span t-field="doc.partner_id.city"/>
+                                <span t-field="doc.partner_id.zip"/><span t-field="doc.partner_invoice_id.state_id"/><br/>
+                                <span class="hexcode-bold">Phone: </span><span t-field="doc.partner_invoice_id.phone"/><br/>
+                                <span class="hexcode-bold">Email: </span><span t-field="doc.partner_invoice_id.email"/><br/>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table class="hexcode-quote-table">
+                                    <thead class="hexcode-thead-green" t-attf-style="background-color:{{ colore_secondario }}; ">
+                                        <th style="padding: 8px;">Image</th>
+                                        <th>Product</th>
+                                        <th>Description</th>
+                                        <th>Order Qty</th>
+                                        <th>Unit Price</th>
+                                        <th>Taxes</th>
+                                        <th>Subtotal</th>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="doc.order_line" t-as="line">
+                                            <td>
+                                                <t t-set="url" t-value="'data:image/png;base64,' + line.product_id.image"/>
+                                                <img t-att-src="url" style="max-width:60px;"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.product_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.product_uom_qty"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.price_unit"/>€
+                                            </td>
+                                            <td>
+                                                <t t-foreach="line.tax_id" t-as="tax">
+                                                    <t t-set="vat" t-value="tax.amount"/>
+                                                    <t t-esc="vat"/>%
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <t t-set="subtotal" t-value="line.product_uom_qty * line.price_unit"/>
+                                                <t t-esc="subtotal"/>
+                                            </td>
+                                            <tr/>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div class="hexcode-total-green" >
+                            <table style="width:100%; color:white;" >
+                                <td t-attf-style="color:{{ colore_primario_testo }}; font-size: 24px; font-weight:400; ">Untaxed Amount: </td>
+                                <td style="text-align:right; font-size: 24px; font-weight:400;">
+                                    <span style="color:black; font-size:24px;" t-field="doc.amount_untaxed"/>
+                                </td>
+                                <tr/>
+                                <td t-attf-style="color:{{ colore_primario_testo }}; font-size: 24px; font-weight:400; ">Taxes: </td>
+                                <td style="text-align:right;">
+                                    <span style="color:black; font-size:20px;" t-field="doc.amount_tax"/>
+                                </td>
+                                <tr/>
+                                <td t-attf-style="color:{{ colore_primario_testo }}; font-size: 24px; font-weight:400; ">Total: </td>
+                                <td style="text-align:right;">
+                                    <span style="color:black; font-size:20px;" t-field="doc.amount_total"/>
+                                </td>
+                                <tr/>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
             <!--TEMA UNO-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_one'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_one' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout">
                     <div class="page">
                         <br/><br/>
@@ -497,7 +670,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_two'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_two' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout2">
                     <div class="page">
                         <br/><br/>
@@ -618,7 +791,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_three'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_three' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout3">
                     <div class="page">
                         <br/><br/>
@@ -739,7 +912,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_four'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_four' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout4">
                     <div class="page">
                         <br/><br/>
@@ -860,7 +1033,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_five'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_five' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout5">
                     <div class="page">
                         <br/><br/>
@@ -981,7 +1154,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_six'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_six' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout6">
                     <div class="page">
                         <br/><br/>
@@ -1108,8 +1281,133 @@
         <template id="report_invoice_document">
             <!-- Re-browse of the record with the partner lang -->
             <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
+            <!--TEMA CUSTOM-->
+            <t t-if="doc.hexcode_report_pdf.is_custom_report == True">
+                <t t-call="hexcode_report_pdf.hexcode_external_layout_custom">
+                    <div class="page">
+                        <t t-set="colore_primario" t-value="doc.hexcode_report_pdf.main_color"/>
+                        <t t-set="colore_secondario" t-value="doc.hexcode_report_pdf.secondary_color"/>
+                        <t t-set="colore_secondario_testo" t-value="doc.hexcode_report_pdf.text_color_secondary"/>
+                        <t t-set="colore_primario_testo" t-value="doc.hexcode_report_pdf.text_color_primary"/>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-xs-6 quote-header" t-attf-style="background-color:{{colore_primario}};">
+                                <h2 class="hexcode-title hexcode-white" t-attf-style="color:{{colore_secondario_testo}}; display:inline; ">Invoice N°<h2 class="hexcode-white" t-attf-style="color:{{colore_secondario_testo}}; display:inline; " t-field="doc.number"/></h2><br/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <span class="hexcode-bold ">Salesperson: </span><span t-field="doc.user_id"/><br/>
+                                <span class="hexcode-bold ">Invoice Date: </span><span  t-field="doc.date_invoice"/><br/>
+                                <span class="hexcode-bold ">Payment Term: </span><span t-field="doc.payment_term_id"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <h3 class="hexcode-title-2 hexcode-green" t-attf-style="color:{{colore_primario_testo}};">Customer</h3><br/><br/>
+                                <span class="hexcode-bold">Name: </span><span t-field="doc.partner_id.name"/><br/>
+                                <span class="hexcode-bold">Address: </span><span t-field="doc.partner_id.street"/><span t-field="doc.partner_id.city"/>
+                                <span t-field="doc.partner_id.zip"/><span t-field="doc.partner_id.state_id"/><br/>
+                                <span class="hexcode-bold">Phone: </span><span t-field="doc.partner_id.phone"/><br/>
+                                <span class="hexcode-bold">Email: </span><span t-field="doc.partner_id.email"/><br/>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table class="hexcode-quote-table">
+                                    <thead class="hexcode-thead-green" t-attf-style="background-color:{{colore_secondario}};">
+                                        <th style="padding: 8px;">Image</th>
+                                        <th>Product</th>
+                                        <th>Description</th>
+                                        <th>Order Qty</th>
+                                        <th>Unit Price</th>
+                                        <th>Taxes</th>
+                                        <th>Subtotal</th>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                            <td>
+                                                <t t-set="url" t-value="'data:image/png;base64,' + line.product_id.image"/>
+                                                <img t-att-src="url" style="max-width:60px;"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.product_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.quantity"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.price_unit"/>€
+                                            </td>
+                                            <td>
+                                                <t t-foreach="line.invoice_line_tax_ids" t-as="tax">
+                                                    <t t-set="vat" t-value="tax.amount"/>
+                                                    <t t-esc="vat"/>%
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <t t-set="subtotal" t-value="line.quantity * line.price_unit"/>
+                                                <t t-esc="subtotal"/>
+                                            </td>
+                                            <tr/>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div class="hexcode-total-green">
+                            <table style="width:100%; color:white;" >
+                                <td t-attf-style="color:{{colore_primario_testo}}; font-size: 24px; font-weight:400;" >Untaxed Amount: </td>
+                                <td style="text-align:right; font-size: 24px; font-weight:400;">
+                                    <span style="color:black; font-size:24px;" t-field="doc.amount_untaxed"/>
+                                </td>
+                                <tr/>
+                                <td t-attf-style="color:{{colore_primario_testo}}; font-size: 20px; font-weight:400;">Taxes: </td>
+                                <td style="text-align:right;">
+                                    <span style="color:black; font-size:20px;" t-field="doc.amount_tax"/>
+                                </td>
+                                <tr/>
+                                <td t-attf-style="color:{{colore_primario_testo}}; font-size: 20px; font-weight:400;">Total: </td>
+                                <td style="text-align:right;">
+                                    <span style="color:black; font-size:20px;" t-field="doc.amount_total"/>
+                                </td>
+                                <t t-if="doc.state == 'paid'">
+                                    <tr/>
+                                    <td t-attf-style="color:{{colore_primario_testo}}; font-size: 20px; font-weight:400;">Amount Due: </td>
+                                    <td style="text-align:right;">
+                                        <span style="color:black; font-size:20px;" t-field="doc.residual"/>
+                                    </td>
+                                </t>
+                                <tr/>
+                                <td t-attf-style="color:{{colore_primario_testo}}; font-size: 20px; font-weight:400;">State: </td>
+                                <td style="text-align:right;">
+                                    <t t-if="doc.state == 'draft'">
+                                        <span style="color:#2980b9; font-size:20px;" t-field="doc.state"/>
+                                    </t>
+                                    <t t-if="doc.state == 'open'">
+                                        <span style="color:#2c3e50; font-size:20px;" t-field="doc.state"/>
+                                    </t>
+                                    <t t-if="doc.state == 'paid'">
+                                        <span style="color:#16a085; font-size:20px;" t-field="doc.state"/>
+                                    </t>
+                                    <t t-if="doc.state == 'cancel'">
+                                        <span style="color:#c0392b; font-size:20px;" t-field="doc.state"/>
+                                    </t>
+                                </td>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
             <!--TEMA UNO-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_one'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_one' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout">
                     <div class="page">
                         <br/><br/>
@@ -1230,7 +1528,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_two'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_two' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout2">
                     <div class="page">
                         <br/><br/>
@@ -1350,7 +1648,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_three'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_three' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout3">
                     <div class="page">
                         <br/><br/>
@@ -1470,7 +1768,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_four'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_four' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout4">
                     <div class="page">
                         <br/><br/>
@@ -1590,7 +1888,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_five'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_five' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout5">
                     <div class="page">
                         <br/><br/>
@@ -1710,7 +2008,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_six'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_six' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout6">
                     <div class="page">
                         <br/><br/>
@@ -1838,8 +2136,86 @@
         <template id="report_picking_document">
             <!-- Re-browse of the record with the partner lang -->
             <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
+             <!--TEMA CUSTOM-->
+            <t t-if="doc.hexcode_report_pdf.is_custom_report == True">
+                <t t-call="hexcode_report_pdf.hexcode_external_layout_custom">
+                    <div class="page">
+                        <t t-set="colore_primario" t-value="doc.hexcode_report_pdf.main_color"/>
+                        <t t-set="colore_secondario" t-value="doc.hexcode_report_pdf.secondary_color"/>
+                        <t t-set="colore_secondario_testo" t-value="doc.hexcode_report_pdf.text_color_secondary"/>
+                        <t t-set="colore_primario_testo" t-value="doc.hexcode_report_pdf.text_color_primary"/>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-xs-6 quote-header" t-attf-style="background-color: {{colore_primario}};">
+                                <h2 class="hexcode-title hexcode-white" t-attf-style="color: {{colore_secondario_testo}}; display:inline;"  >Picking N°<h2 class="hexcode-white" t-attf-style="color: {{colore_secondario_testo}}; display:inline;" t-field="doc.name"/></h2><br/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <span class="hexcode-bold ">Destination Location Zone: </span><span t-field="doc.location_dest_id"/><br/>
+                                <span class="hexcode-bold ">Scheduled Date: </span><span  t-field="doc.min_date"/><br/>
+                                <span class="hexcode-bold ">Source Document: </span><span t-field="doc.origin"/><br/>
+                                <span class="hexcode-bold ">Delivery Method: </span><span t-field="doc.move_type"/><br/>
+                                <span class="hexcode-bold ">Picking Type: </span><span t-field="doc.picking_type_id"/><br/>
+                                <span class="hexcode-bold ">Priority: </span><span t-field="doc.priority"/><br/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <h3 class="hexcode-title-2 hexcode-green" t-attf-style="color: {{colore_primario_testo}}; ">Customer</h3><br/><br/>
+                                <span class="hexcode-bold">Name: </span><span t-field="doc.partner_id.name"/><br/>
+                                <span class="hexcode-bold">Address: </span><span t-field="doc.partner_id.street"/><span t-field="doc.partner_id.city"/>
+                                <span t-field="doc.partner_id.zip"/><span t-field="doc.partner_id.state_id"/><br/>
+                                <span class="hexcode-bold">Phone: </span><span t-field="doc.partner_id.phone"/><br/>
+                                <span class="hexcode-bold">Email: </span><span t-field="doc.partner_id.email"/><br/>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table class="hexcode-quote-table">
+                                    <thead class="hexcode-thead-green" t-attf-style="background-color: {{colore_secondario}}; ">
+                                        <th style="padding: 8px;">Image</th>
+                                        <th>Product</th>
+                                        <th>Source</th>
+                                        <th>Destination</th>
+                                        <th>Qty</th>
+                                        <th>Barcode</th>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="doc.move_lines" t-as="line">
+                                            <td>
+                                                <t t-set="url" t-value="'data:image/png;base64,' + line.product_id.image"/>
+                                                <img t-att-src="url" style="max-width:60px;"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.product_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.location_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.location_dest_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.product_uom_qty"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.product_id.barcode"/>
+                                            </td>
+                                            <tr/>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
             <!--TEMA UNO-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_one'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_one' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout">
                     <div class="page">
                         <br/><br/>
@@ -1913,7 +2289,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_two'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_two' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout2">
                     <div class="page">
                         <br/><br/>
@@ -1987,7 +2363,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_three'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_three' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout3">
                     <div class="page">
                         <br/><br/>
@@ -2061,7 +2437,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_four'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_four' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout4">
                     <div class="page">
                         <br/><br/>
@@ -2135,7 +2511,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_five'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_five' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout5">
                     <div class="page">
                         <br/><br/>
@@ -2209,7 +2585,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_six'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_six' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout6">
                     <div class="page">
                         <br/><br/>
@@ -2291,8 +2667,121 @@
         <template id="report_purchase_document">
             <!-- Re-browse of the record with the partner lang -->
             <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
+            <!--Tema Custom Color-->
+            <t t-if="doc.hexcode_report_pdf.is_custom_report == True">
+                <t t-call="hexcode_report_pdf.hexcode_external_layout_custom">
+                    <div class="page">
+                        <t t-set="colore_primario" t-value="doc.hexcode_report_pdf.main_color"/>
+                        <t t-set="colore_secondario" t-value="doc.hexcode_report_pdf.secondary_color"/>
+                        <t t-set="colore_secondario_testo" t-value="doc.hexcode_report_pdf.text_color_secondary"/>
+                        <t t-set="colore_primario_testo" t-value="doc.hexcode_report_pdf.text_color_primary"/>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-xs-6" t-attf-style="background-color: {{colore_primario}} ; padding:10px; ">
+                                <t t-if="doc.state == 'draft'">
+                                    <h2 class="hexcode-title" t-attf-style="display:inline; color:{{colore_secondario_testo}};">Request for Quotation N°<h2  t-attf-style="display:inline; color:{{colore_secondario_testo}};" t-field="doc.name"/></h2><br/>
+                                </t>
+                                <t t-if="doc.state == 'purchase'">
+                                    <h2 class="hexcode-title" t-attf-style="display:inline; color:{{colore_secondario_testo}};">Purchase Order N°<h2 t-attf-style="display:inline; color:{{colore_secondario_testo}};" t-field="doc.name"/></h2><br/>
+                                </t>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <span class="hexcode-bold ">Order Date: </span><span t-field="doc.date_order"/><br/>
+                                <span class="hexcode-bold ">Deliver To: </span><span  t-field="doc.picking_type_id"/><br/>
+                                <span class="hexcode-bold ">Scheduled Date: </span><span t-field="doc.date_planned"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <h3 class="hexcode-title-2" t-attf-style="display:inline; color:{{colore_primario_testo}};">Vendor</h3><br/><br/>
+                                <span class="hexcode-bold">Name: </span><span t-field="doc.partner_id.name"/><br/>
+                                <span class="hexcode-bold">Address: </span><span t-field="doc.partner_id.street"/><span t-field="doc.partner_id.city"/>
+                                <span t-field="doc.partner_id.zip"/><span t-field="doc.partner_id.state_id"/><br/>
+                                <span class="hexcode-bold">Phone: </span><span t-field="doc.partner_id.phone"/><br/>
+                                <span class="hexcode-bold">Email: </span><span t-field="doc.partner_id.email"/><br/>
+                                <span class="hexcode-bold">Vendor Reference: </span><span t-field="doc.partner_ref"/><br/>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table class="hexcode-quote-table">
+                                    <thead t-attf-style="background: {{colore_primario}}; padding: 15px; color:{{ colore_secondario_testo }};">
+                                        <th style="padding: 8px;">Image</th>
+                                        <th>Product</th>
+                                        <th>Description</th>
+                                        <th>Scheduled Date</th>
+                                        <th>Qty</th>
+                                        <th>Unit Price</th>
+                                        <th>Taxes</th>
+                                        <th>Subtotal</th>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="doc.order_line" t-as="line">
+                                            <td>
+                                                <t t-set="url" t-value="'data:image/png;base64,' + line.product_id.image"/>
+                                                <img t-att-src="url" style="max-width:60px;"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.product_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.date_planned"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.product_qty"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.price_unit"/>€
+                                            </td>
+                                            <td>
+                                                <t t-foreach="line.taxes_id" t-as="tax">
+                                                    <t t-set="vat" t-value="tax.amount"/>
+                                                    <t t-esc="vat"/>%
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <t t-set="subtotal" t-value="line.product_qty * line.price_unit"/>
+                                                <t t-esc="subtotal"/>
+                                            </td>
+                                            <tr/>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div class="totale" t-attf-style="color:{{colore_primario_testo}}; padding: 15px; font-family: 'Roboto', sans-serif; width: 400px; float:right;">
+                            <table style="width:100%;" >
+                                <td t-attf-style="font-size: 24px; font-weight:400; color:{{colore_primario_testo}};" >Untaxed Amount: </td>
+                                <td style="text-align:right; font-size: 24px; font-weight:400;">
+                                    <span style="color:black; font-size:24px;" t-field="doc.amount_untaxed"/>
+                                </td>
+                                <tr/>
+                                <td t-attf-style="font-size: 20px; font-weight:300; color:{{colore_primario_testo}};">Taxes: </td>
+                                <td style="text-align:right;">
+                                    <span style="color:black; font-size:20px;" t-field="doc.amount_tax"/>
+                                </td>
+                                <tr/>
+                                <td t-attf-style="font-size: 20px; font-weight:300; color:{{colore_primario_testo}};">Total: </td>
+                                <td style="text-align:right;">
+                                    <span style="color:black; font-size:20px;" t-field="doc.amount_total"/>
+                                </td>
+                                <tr/>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
             <!--TEMA UNO-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_one'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_one' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout">
                     <div class="page">
                         <br/><br/>
@@ -2402,7 +2891,7 @@
                 </t>
             </t>
             <!--TEMA DUE-->
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_two'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_two' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout2">
                     <div class="page">
                         <br/><br/>
@@ -2511,7 +3000,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_three'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_three' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout3">
                     <div class="page">
                         <br/><br/>
@@ -2620,7 +3109,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_four'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_four' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout4">
                     <div class="page">
                         <br/><br/>
@@ -2729,7 +3218,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_five'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_five' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout5">
                     <div class="page">
                         <br/><br/>
@@ -2838,7 +3327,7 @@
                     </div>
                 </t>
             </t>
-            <t t-if="doc.hexcode_report_pdf.stile == 'theme_six'">
+            <t t-if="doc.hexcode_report_pdf.stile == 'theme_six' and doc.hexcode_report_pdf.is_custom_report == False">
                 <t t-call="hexcode_report_pdf.hexcode_external_layout6">
                     <div class="page">
                         <br/><br/>
@@ -3614,6 +4103,166 @@
                 </div>
             </div>
         </template>
+
+
+        <!-- TEMA CUSTOM -->
+        <template id="hexcode_external_layout_custom">
+            <!-- Multicompany -->
+            <t t-if="not o and doc">
+                <t t-set="o" t-value="doc"/>
+            </t>
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+
+            <t t-call="hexcode_report_pdf.hexcode_external_layout_header_custom" />
+            <t t-raw="0" />
+            <t t-call="hexcode_report_pdf.hexcode_external_layout_footer_custom" />
+        </template>
+
+        <template id="hexcode_external_layout_header_custom">
+            <div class="header">
+                <t t-set="colore_primario" t-value="o.hexcode_report_pdf.header_color"/>
+                <t t-set="colore_primario_testo" t-value="o.hexcode_report_pdf.header_color_text"/>
+                <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,900,700italic,900italic' rel='stylesheet' type='text/css'/>
+                <div class="row">
+                    <div class="col-xs-12" t-attf-style="width:100%; height:20px; background-color: {{ colore_primario }};"/>
+                </div>
+                <div class="row" id="hexcode-row-header">
+                    <div class="col-xs-3">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" class="hexcode-image-company"/>
+                    </div>
+                    <div class="col-xs-3">
+
+                    </div>
+                    <div class="col-xs-6">
+                        <table class="hexcode-table-header-info">
+                            <tbody>
+                                <td>
+                                    <div t-attf-style="width:33px; height:33px; border-radius:50%; background-color: {{colore_primario}}; margin-bottom:5px !important;">
+                                        <span class="glyphicon glyphicon-home" t-attf-style="font-size:18px; color:{{colore_primario_testo}}; margin-top: 6px; margin-left:8px;"></span>
+                                    </div>
+                                </td>
+                                <td class="hexcode-header-info-text">
+                                    <a t-field="company.street" />
+                                    <a t-field="company.city"/>
+                                    <a t-field="company.zip"/>
+                                    <a t-field="company.state_id"/>
+                                </td>
+                                <td>
+                                    <div t-attf-style="width:33px; height:33px; border-radius:50%; background-color: {{colore_primario}}; margin-bottom:5px !important;">
+                                        <span class="glyphicon glyphicon-globe" t-attf-style="font-size:18px; color:{{colore_primario_testo}}; margin-top: 6px; margin-left:8px;"></span>
+                                    </div>
+                                </td>
+                                <td  class="hexcode-header-info-text">
+                                    <a t-field="company.website" />
+                                </td>
+                                <tr/>
+                                <td>
+                                    <div t-attf-style="width:33px; height:33px; border-radius:50%; background-color: {{colore_primario}}; margin-bottom:5px !important;">
+                                        <span class="glyphicon glyphicon-envelope" t-attf-style="font-size:18px; color:{{colore_primario_testo}}; margin-top: 6px; margin-left:8px;"></span>
+                                    </div>
+                                </td>
+                                <td  class="hexcode-header-info-text">
+                                    <a t-field="company.email" />
+                                </td>
+                                <td>
+                                    <div t-attf-style="width:33px; height:33px; border-radius:50%; background-color: {{colore_primario}}; margin-bottom:5px !important;">
+                                        <span class="glyphicon glyphicon-earphone" t-attf-style="font-size:18px; color:{{colore_primario_testo}}; margin-top: 6px; margin-left:8px;"></span>
+                                    </div>
+                                </td>
+                                <td class="hexcode-header-info-text">
+                                    <a t-field="company.phone" />
+                                </td>
+                                <tr/>
+                                <td>
+                                    <div t-attf-style="width:33px; height:33px; border-radius:50%; background-color: {{colore_primario}}; margin-bottom:5px !important;">
+                                        <span class="glyphicon glyphicon-phone-alt" t-attf-style="font-size:18px; color:{{colore_primario_testo}}; margin-top: 6px; margin-left:8px;"></span>
+                                    </div>
+                                </td>
+                                <td class="hexcode-header-info-text">
+                                    <a t-field="company.fax" />
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="hexcode_external_layout_footer_custom">
+            <t t-set="colore_primario" t-value="o.hexcode_report_pdf.footer_color"/>
+            <t t-set="colore_primario_testo" t-value="o.hexcode_report_pdf.footer_color_text"/>
+            <div class="footer" t-attf-style=" background-color:{{ colore_primario }}; border:none; padding: 10px;">
+                <div class="text-center">
+                    <ul t-attf-style="color:{{colore_primario_testo}};" t-if="not company.custom_footer" class="list-inline">
+                        <li t-if="company.phone">Phone: <span t-field="company.phone"/></li>
+
+                        <li t-if="company.fax and company.phone">&amp;bull;</li>
+                        <li t-if="company.fax">Fax: <span t-field="company.fax"/></li>
+
+                        <li t-if="company.email and company.fax or company.email and company.phone">&amp;bull;</li>
+                        <li t-if="company.email">Email: <span t-field="company.email"/></li>
+
+                        <li t-if="company.website and company.email or company.website and company.fax or company.website and company.phone">&amp;bull;</li>
+                        <li t-if="company.website">Website: <span t-field="company.website"/></li>
+                    </ul>
+
+                    <ul t-attf-style="color:{{colore_primario_testo}};" t-if="not company.custom_footer" class="list-inline" name="financial_infos">
+                        <li t-if="company.vat">TIN: <span t-field="company.vat"/></li>
+                    </ul>
+
+                    <t t-if="company.custom_footer">
+                        <span t-attf-style="color:{{colore_primario_testo}};" t-raw="company.rml_footer"/>
+                    </t>
+
+                    <ul t-attf-style="color:{{colore_primario_testo}};" class="list-inline">
+                        <li>Page:</li>
+                        <li><span class="page"/></li>
+                        <li>/</li>
+                        <li><span class="topage"/></li>
+                    </ul>
+                </div>
+            </div>
+        </template>
+
+
+        <record id="paperformat_hexcode" model="report.paperformat">
+            <field name="name">European A4 low margin</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">50</field>
+            <field name="margin_bottom">23</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">45</field>
+            <field name="footer_spacing">60</field>
+            <field name="dpi">90</field>
+        </record>
+
+
+        <record id="hexcode_report_pdf.btn_create_claim_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="hexcode_report_pdf.paperformat_hexcode" />
+        </record>
+        <record id="hexcode_report_pdf.btn_create_quote_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="hexcode_report_pdf.paperformat_hexcode" />
+        </record>
+        <record id="hexcode_report_pdf.btn_create_invoice_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="hexcode_report_pdf.paperformat_hexcode" />
+        </record>
+        <record id="hexcode_report_pdf.btn_create_picking_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="hexcode_report_pdf.paperformat_hexcode" />
+        </record>
+        <record id="hexcode_report_pdf.btn_create_purchase_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="hexcode_report_pdf.paperformat_hexcode" />
+        </record>
 
 
         <template id="hexcode_report_pdf_style" inherit_id="report.assets_pdf">
